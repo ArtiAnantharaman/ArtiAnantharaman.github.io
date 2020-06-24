@@ -1,8 +1,10 @@
 ---
 layout: post
-title: 'Project One'
+title: 'Augmented Reality for Minimally Invasive Surgery'
 ---
-Mauris velit metus, tempor gravida nulla eget, auctor accumsan tellus. Curabitur volutpat sed dolor quis tempus. In scelerisque aliquam felis at tincidunt. Proin non augue fringilla, [pretium justo vitae](#), maximus dui. Nunc ipsum nisi, fermentum sit amet volutpat cursus, sodales ac nisl. Quisque nec tellus sem. Cras pharetra felis non quam mollis, nec efficitur lectus aliquet. Maecenas ipsum felis, eleifend nec [semper venenatis](#), consequat ut nunc. Donec est augue, facilisis quis placerat sed, imperdiet sit amet neque. Maecenas nec risus metus. Nunc non condimentum ipsum. Phasellus consectetur dapibus massa, convallis iaculis nisi vestibulum id. Phasellus et fringilla augue. Donec consequat dui ut rutrum elementum. Aenean nisi arcu, ornare eu lacus vel, faucibus tempor tortor.
+The Chopsticks Robotic Surgical System is a product that can overcome the limitations of conventional tumor localization. In typical tumor resection procedures, a surgeon has to make a large incision to gain access to the diseased organ and will manually palpate the organ to locate embedded tumors. Regions of abnormally high stiffness in the organ indicate the presence of tumors. The patient will have to be hospitalized for longer and is at a higher risk of infection because of the large incision needed for the non-laparoscopic surgery. In addition to this method prolonging the hospitalization time of the patient, supplementary preoperative images such as CT scans make the procedure very expensive. It is also cognitively demanding for the surgeon who must form a correspondence between these tumor positions with the CT scans. CT scans are also expensive in the United States, with an average cost of $3,275.
+
+The Chopsticks surgical system built on top of the da Vinci Robotic Surgical System circumvents the need for preoperative images of the organ by constructing a 3D organ model in real-time while accounting for the natural movements of the organ. The robot palpates the organ to search for tumors and overlays their location and shape onto the visual feed for the surgeon to see in real-time. This system helps the surgeon perform an easier surgery as well as contributing to lower patient costs and healing times.
 
 {% include image.html url="http://www.gratisography.com" image="projects/proj-1/dog.jpg" %}
 
