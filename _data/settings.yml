@@ -47,13 +47,14 @@ about: >
 contact: >
   # Contact
 
-  You may contact me [through my email](mailto:artia@andrew.cmu.edu) if you would like to discuss my work in greater detail.
+  You may contact me at [artia@andrew.cmu.edu](mailto:artia@andrew.cmu.edu) if you would like to discuss my work in greater detail.
 #-------------------------------
 # Work Section
 
 resume: >
   # Resume
-  Hi
+
+   You can download my resume <a target="_blank" href="https://github.com/ArtiAnantharaman/ArtiAnantharaman.github.io/raw/master/_includes/artia_resume.pdf">here</a>.
 
 projects:
 - {name: 'Project One', folder: 'proj-1', file: 'projects/proj-1.html'}
