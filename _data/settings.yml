@@ -4,7 +4,7 @@
 menu:
 - {name: 'About', url: 'pages/about.html'}
 - {name: 'Projects', url: ''}
-- {name: 'Resume', url: '_includes/Arti Anantharaman Resume.pdf'}
+- {name: 'Resume', url: 'https://github.com/ArtiAnantharaman/ArtiAnantharaman.github.io/raw/master/_includes/Arti Anantharaman Resume.pdf'}
 - {name: 'Contact', url: 'pages/contact.html'}
 
 #-------------------------------
