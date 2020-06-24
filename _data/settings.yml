@@ -3,7 +3,7 @@
 
 menu:
 - {name: 'Projects', url: ''}
-- {name: 'Blog', url: 'pages/blog.html'}
+- {name: 'Resume', url: 'pages/blog.html'}
 - {name: 'About', url: 'pages/about.html'}
 - {name: 'Contact', url: 'pages/contact.html'}
 
@@ -40,15 +40,14 @@ disqus:
 # About Section
 
 about: >
-  # Portfolio Jekyll Theme
+  # Arti Anantharaman
 
-  This is a personal portfolio theme that I built from the ground up, using the [DevTips Starter Kit](http://devtipsstarterkit.com/) as a foundation for starting, and following closely the amazing tutorial by [Travis Neilson over at DevTips](https://www.youtube.com/watch?v=T6jKLsxbFg4&list=PL0CB3OvPhDA_STygmp3sDenx3UpdOMk7P). You can [check out the demo](lenpaul.github.io/portfolio-jekyll-theme/), and [fork the repository](https://github.com/LeNPaul/portfolio-jekyll-theme/fork), to get started.
+  Hi! I'm Arti, and I'm currently pursuing my Master's in Robotics Systems Development at Carnegie Mellon Univeristy. My primary areas of interest are motion planning, robot controls, spatial kinematics etc.
 
 contact: >
   # Contact
 
-  You may contact me [through my email](mailto:l.nguyen.paul@gmail.com) or [tweet at me](https://twitter.com/intent/tweet?text=%40paululele) if you have any questions or would like to bring up any issues.
-
+  You may contact me [through my email](mailto:artia@andrew.cmu.edu) if you would like to discuss my work in greater detail.
 #-------------------------------
 # Work Section
 
@@ -67,4 +66,4 @@ social:
 - {icon: 'linkedin', link: '#'}
 - {icon: 'envelope', link: 'mailto:#'}
 
-# social network icons available: 'twitter' / 'facebook' / 'github' / 'pinterest' 'google-plus' / 'linkedin' / 'youtube' / 'instagram' / 'dribbble' / 'behance' / 'soundcloud' / 'vine'
+
