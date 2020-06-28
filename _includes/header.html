@@ -3,8 +3,14 @@
     <a href="{{ site.github.url }}/">{{ site.title }}</a>
   </div>
   <nav>
+  	
+  	<!-- {% if item.name == 'resume.html' %}
+    	<a href= "https://github.com/ArtiAnantharaman/ArtiAnantharaman.github.io/raw/master/_includes/artia_resume.pdf" target="_blank">here</a>	
+   	{% endif %} -->
+
     {% for item in site.data.settings.menu %}
-      <a href="{{ site.github.url }}/{{ item.url }}">{{ item.name }}</a>
+     	<a href="{{ site.github.url }}/{{ item.url }}" target="_blank">{{ item.name }}</a>
     {% endfor %}
+  
   </nav>
 </header>

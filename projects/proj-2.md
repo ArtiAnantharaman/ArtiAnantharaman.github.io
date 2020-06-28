@@ -5,7 +5,7 @@ title: 'Robotic Bin Picking'
 
 Automated bin picking is a complex problem that is only partially solved. Automated bin picking often involves a 3D model of the parts, the robot gripper, any obstacles in the scene, sensors being used to map the bin, image analysis software, path planning software, and robot control software. A generic path planning algorithm that can handle infinite variations in part sizes and orientations is near-impossible with current technology, and weeks or months of hand-picked feature engineering often leads to unreliable performance. Companies like Covariant AI are bringing in deep reinforcement learning into the industrial manipulation space and allowing robots to learn these complex tasks via apprenticeship (by watching a human do the same task). In this project, we work on a simplified version of the same bin picking task within a photo-realistic simulator.
 
-{% include image.html url="http://www.gratisography.com" image="projects/proj-2/stretch.jpg" %}
+<img src="/img/proj-2/" alt="Girl in a jacket" width="500" height="600"> 
 
 During one of our team discussions, an idea came up: Modify the RRT algorithm sample points from the task space of the gripper rather than from the joint configurations of the Franka. This allowed us to plan in the 3D XYZ space + 4D quaternion/rotation space of the gripper. We restricted the upper and lower task space limits such that the robot arm remains in the forward half of the workspace bounds and does not perform unnatural motions. However, this implementation caused the robot to align itself horizontally with the shape to be picked up and reach a joint limit, when commanded to go to a particular shape's location. 
 

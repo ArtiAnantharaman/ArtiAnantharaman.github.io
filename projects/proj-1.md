@@ -6,6 +6,5 @@ The Chopsticks Robotic Surgical System is a product that can overcome the limita
 
 The Chopsticks surgical system built on top of the da Vinci Robotic Surgical System circumvents the need for preoperative images of the organ by constructing a 3D organ model in real-time while accounting for the natural movements of the organ. The robot palpates the organ to search for tumors and overlays their location and shape onto the visual feed for the surgeon to see in real-time. This system helps the surgeon perform an easier surgery as well as contributing to lower patient costs and healing times.
 
-{% include image.html url="http://www.gratisography.com" image="projects/proj-1/dog.jpg" %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tUwB2kyOg7o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-{% include image.html url="http://www.gratisography.com" image="projects/proj-1/wall.jpg" %}
