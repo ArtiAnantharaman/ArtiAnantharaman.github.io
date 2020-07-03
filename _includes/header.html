@@ -4,7 +4,12 @@
   </div>
   <nav>
     {% for item in site.data.settings.menu %}
-     	<a href="{{ site.github.url }}/{{ item.url }}" target="_blank">{{ item.name }}</a>
+    	{% if item.name == 'Resume' %}
+     		<a href="{{ site.github.url }}/{{ item.url }}" target="_blank">{{ item.name }}</a>
+     	{% else %}
+     		<a href="{{ site.github.url }}/{{ item.url }}">{{ item.name }}</a>
+     	{% endif %}
+    	<!-- } -->
     {% endfor %}
   
   </nav>

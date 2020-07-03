@@ -13,10 +13,10 @@ In order to have the Franka try and grasp an object with a different plan if it 
 
 A video of the Franka executing the task based on the RRT-with-timeout approach is below:
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=81vFBJ9JvFI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/81vFBJ9JvFI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 For our second approach to this task, we decided to use images from the camera mounted on the robot's wrist. The depth map of the entire container, taken from the height that the robot was spawned at, was of poor resolution. So we used a raster scan-like approach wherein the Franka scans the container as a grid of 25 x 25 waypoints and the wrist camera captures a snapshot of the scene below at each waypoint. The center pixels of each of the 625 obtained images are concatenated to form a relatively higher resolution 25 x 25 depth map which is later thresholded using a `maximum distance' metric to the container. The objects are at a lower depth from the wrist camera compared to the base of the container and hence will be thresholded to a different value from the background. A pixel from the thresholded region is randomly sampled and the robot moves to that location and tries to grasp the shape. We try to pick the shapes up, and if any shape has been moved around or seems difficult to grasp, we start over and rescan the container.
 
 A video of the Franka grasping shapes based on their 6 DoF pose obtained from depth images is below:
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=K5x97BLqYto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/K5x97BLqYto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
