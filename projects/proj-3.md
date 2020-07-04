@@ -3,7 +3,7 @@ layout: post
 title: '3D Dense Reconstruction using ICP and Point-based Fusion'
 ---
 
-In this programming assignment, I implemented a basic 3D dense mapping system that
+In this programming assignment, I implemented a basic <font color = "black"><b>3D dense mapping system</b></font> that
 reconstructs a 3D dense model of a static indoor environment with given RGB-D image sequences. The system
 follows the tracking and mapping framework proposed in [1], which is commonly used in many state-of-the-art
 visual tracking and mapping systems. In this framework, mapping relies on the pose estimation from tracking to
@@ -17,11 +17,11 @@ with some modifications from the original algorithms.
 The 3D dense reconstructed indoor scene, obtained by modifying the standard ICP algorithm [2] is shown below:
 <img src="/assets/img/projects/proj-3/icp.png" alt="ICP">.
 
-The point-to-plane ICP[1] performs well and results in a good reconstruction. The registration of successive frames into a global model is good and yields a reasonably well-structured output. Objects like the paintings on the wall have a “wavey” shape
+The <font color = "black"><b>point-to-plane ICP</b></font>[1] performs well and results in a good reconstruction. The registration of successive frames into a global model is good and yields a reasonably well-structured output. Objects like the paintings on the wall have a “wavey” shape
 to them, quite unlike paintings in the real-world. The outlines of objects like the painting frames, cushions, etc. are not as sharp as one would expect, though overall, the semantic information conveyed in the reconstructed scene in quite good. However,
 the trajectory shown in red has a big discontinuity towards the end and seems to break off towards the end position. The likely reason for the suboptimal performance could be the fact that this modified ICP only iterates on one downsampled level with few iterations.
 
-An improved reconstruction is obtained using point-based fusion. Volumetric fusion methods have high computational overheads [3] owing to continuous transitions between different data representations. Using regular voxel grids imposes memory overheads because both empty space and surfaces are represented densely [3], limiting the size of the reconstruction volume. On the other hand, point-based fusion methods lower the memory overhead associated with volumetric approaches and can therefore be employed in large-scale reconstructions.
+An improved reconstruction is obtained using <font color = "black"><b>point-based fusion</b></font>. Volumetric fusion methods have high computational overheads [3] owing to continuous transitions between different data representations. Using regular voxel grids imposes memory overheads because both empty space and surfaces are represented densely [3], limiting the size of the reconstruction volume. On the other hand, point-based fusion methods lower the memory overhead associated with volumetric approaches and can therefore be employed in large-scale reconstructions.
 
 The 3D dense reconstructed indoor scene, obtained by incorporating point-based fusion [1] is shown below:
 <img src="/assets/img/projects/proj-3/pf.png" alt="pf">.
@@ -38,7 +38,7 @@ pointing in the same direction before fusing the corresponding points, which fur
 
 
 
-References:
+<font color = "black"><b>References:</b></font>
 
 [1] Keller, Maik, et al. “Real-time 3D reconstruction in dynamic scenes using point-based fusion.” International
 Conference on 3D vision (3DV), 2013. <a href="http://ieeexplore.ieee.org/document/6599048/">Link to paper</a>.

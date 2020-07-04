@@ -43,11 +43,11 @@ disqus:
 # About Section
 
 about: >
-  Hi!  am a Graduate student at the Robotics Institute in Carnegie Mellon University, pursuing my Master's in Robotic Systems Development. Currently, I am working with Prof. Howie Choset to develop a robotic surgical system to autonomously localize tumors of the liver, and display their positions in real-time using augmented reality. 
+  Hi! I am a Graduate student at the Robotics Institute in Carnegie Mellon University, pursuing my Master's in Robotic Systems Development. Currently, I am working with Prof. Howie Choset to develop a robotic surgical system to autonomously localize tumors of the liver, and display their positions in real-time using augmented reality. 
 
   My most recent work experience was at Johnson & Johnson, in the Robotics & Digital Surgery group where I defined functional requirements for a robot arm to perform manipulation tasks, and also automated the testing of critical robotic faults.
 
-  in the past, I have had the opportunity spending two summers interning at Robert Bosch Manufacturing solutions GmbH where I programmed collaborative robots to perform specific tasks to meet end-user requirements.
+  In the past, I have had the opportunity to spend two summers interning at Robert Bosch Manufacturing solutions GmbH where I programmed collaborative robots to perform specific tasks to meet end-user requirements.
 
   Within the robotics domain, my areas of interest are motion planning, optimal control, spatial kinematics, state estimation, rigid body transformations, and point-cloud registration techniques. I strive to leverage my technical skills to enhance the healthcare experience through medical and surgical robotic solutions. 
 
@@ -64,8 +64,7 @@ contact: >
 
 resume: >
   # Resume
-
-   You can download my resume <a target="_blank" href="https://github.com/ArtiAnantharaman/ArtiAnantharaman.github.io/raw/master/_includes/artia_resume.pdf">here</a>.
+  
 
 projects:
 - {name: 'Augmented Reality for Minimally Invasive Surgery', folder: 'proj-1', file: 'projects/proj-1.html'}
