@@ -72,7 +72,7 @@ projects:
 - {name: '3D Dense Reconstruction using ICP and Point-based Fusion', folder: 'proj-4', file: 'projects/proj-4.html'}
 - {name: 'Path Planning on Constraint Manifolds', folder: 'proj-5', file: 'projects/proj-5.html'}
 - {name: 'Spatial Kinematics of a 7-DoF Robotic Arm', folder: 'proj-6', file: 'projects/proj-6.html'}
-- {name: 'Extended Kalman Filter for 2D SLAM', folder: 'proj-7, file: 'projects/proj-7.html'}
+- {name: 'Extended Kalman Filter for 2D SLAM', folder: 'proj-7', file: 'projects/proj-7.html'}
 - {name: 'Control and Trajectory Generation of a Quadcopter', folder: 'proj-8', file: 'projects/proj-8.html'}
 - {name: 'Object Tracking', folder: 'proj-9', file: 'projects/proj-9.html'}
 
