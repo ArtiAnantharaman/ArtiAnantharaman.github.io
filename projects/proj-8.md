@@ -1,29 +1,42 @@
 ---
 layout: post
-title: 'Object Tracking'
+title: 'Control and Trajectory Generation of a Quadcopter'
 ---
 
-In computer vision, the <font color = "black"><b>Lucas–Kanade optical flow algorithm</b></font> is a widely used differential method for optical flow estimation developed by Bruce D. Lucas and Takeo Kanade. It assumes that the flow is essentially constant in a local neighbourhood of the pixel under consideration, and solves the basic optical flow equations for all the pixels in that neighbourhood, by the least squares criterion. Lucas-Kanade  optical flow algorithm is a simple technique which can provide an estimate of the movement of interesting features in successive images of a scene. We would like to associate a movement vector (u,v) to every such ”interesting” pixel in the scene, obtained by comparing the two consecutive images.
+This project, as part of my Robot Mobility course at CMU, emphasized the generation of time-parameterized piecewise continuous trajectories and feedback control design to enable an aerial robot (in simulation) to fly along a pre-defined path. 
+<font color = "black"><b>The project sought to:</b></font>
 
-The Lucas-Kanade algorithm makes some <font color = "black"><b>implicit assumptions:</b></font>
+1. Develop a basic state machine to facilitate simulation that enables the robot to takeoff, hover, track a
+trajectory, and land
+2. Introduce time-parameterized trajectories given fixed initial and final endpoint constraints and bounded
+velocity and acceleration
+3. Extend the formulation to include piecewise continuous trajectories with fixed initial and final endpoint
+constraints
+4. Evaluate tracking performance given different levels of flight performance and trajectory design
 
-– The two images are separated by a small time increment ∆t, in such a
-way that objects have not displaced significantly (that is, the algorithm
-works best with slow moving objects).
+I implemented a number of scenarios of the quadcopter's movements, and for each of them, tuned the PD gains to minize the error between the desired and actual position. In the sections that follow, different mobile states of the quadcopter are presented along with plots that indicate the margin of error between the desired and the actual states.
 
-– The images depict a natural scene containing textured objects exhibiting shades of gray (different intensity levels) which change smoothly.
+Using a linearized feedback control policy, I implemented a <font color = "black"><b>Proportional Derivative feedback controller</b></font> to enable the robot to hover at a desired location (e.g., z = 0.5 m).
+The plot of the desired vs. actual state of the quadcopter <font color = "black"><b>hovering</b></font> is shown below:
+<img src="/assets/img/projects/proj-7/Q2statebasic.PNG" alt="1">
 
-The algorithm does not use color information in an explicit way.  It does not scan  the  second  image  looking  for  a  match  for  a  given  pixel.   It  works  by trying to guess in which direction an object has moved so that local changes in intensity can be explained.
+I developed a PD line tracking controller to enable the robot to take-off from a starting location, go to a fixed height of 1.0 m, and return to the ground. The plot of the desired vs. actual state of the quadcopter <font color = "black"><b>line-tracking</b></font> is shown below:
+<img src="/assets/img/projects/proj-7/Q3statebasic.PNG" alt="2">
 
-Helpful links to understand the Lucas-Kanade algorithm:
-1. <a href="https://www.ri.cmu.edu/pub_files/pub3/baker_simon_2002_3/baker_simon_2002_3.pdf">Lucas-Kanade 20 Years On: A Unifying Framework: Part 1</a>
-2. <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.12.3095&rep=rep1&type=pdf">Lucas-Kanade 20 Years On: A Unifying Framework: Part 2</a>
-3. <a href="http://www.inf.fu-berlin.de/inst/ag-ki/rojas_home/documents/tutorials/Lucas-Kanade2.pdf">Lucas-Kanade in a Nutshell</a>
+Additionally, I implemented the hover and line tracking case using an <font color = "black"><b>LQR-based feedback controller</b></font> and compared the performance with the PD controller.
 
-The tracking of a car using the Lucas-Kanade method is shown in the video below:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KOIOgSs7Res" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+The plot of the desired vs. actual state of the quadcopter (LQR-based feedback control) <font color = "black"><b>hovering</b></font> is shown below:
+<img src="/assets/img/projects/proj-7/LQR6.2stateoptimal.png" alt="3">
 
-It is apparent on the video above that the image content we are tracking in the first frame differs from the one in the last frame. This is understandable since we are updating the template after processing each frame and the error can be accumulating. This problem is known as <font color = "black"><b>template drifting</b></font>. To mitigate this problem, I followed the approach listed in  <a href="https://www.ri.cmu.edu/publications/the-template-update-problem//">Iain Matthews et al., 2003.</a>.
+The plot of the desired vs. actual state of the quadcopter (LQR-based feedback control) <font color = "black"><b>line-tracking</b></font> is shown below:
+<img src="/assets/img/projects/proj-7/LQR6.3stateoptimal.png" alt="4">
 
-The tracking of a car after incorporating <font color = "black"><b>template correction</b></font> is shown in the video below:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Vb8oHi7OCEE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Finally, I define a <font color = "black"><b>piecewise continuous trajectory</b></font> consisting of four waypoints: [0, 0, 1, 0], [2,
+1, 1, 0], [0, 2, 1, 0], [-2, 1, 1, 0] (position, heading). To do so, I generated a trajectory that visits the four waypoints
+(returning to the first; forming an <font color = "black"><b>ellipse</b></font>) with an initial velocity of zero and an end velocity of 1 m/s at the first
+waypoint. The robot will start at rest, track the elliptical trajectory, and arrive at the starting location at a non-
+zero velocity (1 m/s). 
+
+The plot of the desired elliptal trajectory (left) and the actual trajectory (right) obtained is shown below:
+<img src="/assets/img/projects/proj-7/ellipse.png" alt="5">
+The robot is able to follow the desired trajectory very closely, with minor deviations when it recovers from sharper turns. 

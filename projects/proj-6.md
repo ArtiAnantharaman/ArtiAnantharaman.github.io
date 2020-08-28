@@ -1,26 +1,15 @@
 ---
 layout: post
-title: 'Extended Kalman Filter for 2D SLAM'
+title: 'Spatial Kinematics of a 7-DoF Robotic Arm'
 ---
 
-In this programming assignment, I implemented my own 2D EKF-SLAM solver in MATLAB. The robot starts with observing the surrounding environment and measuring some landmarks, then executes a control input to move. The measurement and control steps are repeated several times. For simplicity, I assumed the robot observes the same set of landmarks in the same order at each pose. I used EKF-SLAM to recover the trajectory of the robot and the positions of the landmarks from the control input and measurements.
+In this programming assignment, I calculated the forward and inverse kinematics of the 7-DoF robot arm using which I implemented a box-box collision checking scheme.
 
-The landmarks are being observed by the robot with a laser sensor which gives bearing angle and range, using which the global coordinates of the landmark are computed. I formulated the <font color = "black"><b>measurement Jacobian</b></font> with respect to the landmark positions and with respect to the robot pose to linearize the set of non-linear equations about the current mean. 
+The <font color = "black"><b>forward kinematics</b></font> of the Franka Panda robot were computed from the Denavit-Hartenberg parameters provided by the robot manufacturer. The <font color = "black"><b>inverse kinematics</b></font> of the arm were computed using the <font color = "black"><b>Jacobian Transpose Method</b></font>, for which this <a href="https://homes.cs.washington.edu/~todorov/courses/cseP590/06_JacobianMethods.pdf">link</a> proved to be very helpful.
 
-<img src="/assets/img/projects/proj-6/EKF.png" alt="ekf">
+In order to implement a collion checker, the links of the robot arm were modelled as <font color = "black"><b>oriented bounding boxes (OBB)</b></font>. The <font color = "black"><b>Separating Axis Theorem (SAT)</b></font> was applied to determine if the arm was in collision with a user-controlled object in 3D space. SAT states that: “If two convex objects are not intersecting, there exists an axis for which the projection of the objects will not overlap.” This <a href="https://www.jkh.me/files/tutorials/Separating%20Axis%20Theorem%20for%20Oriented%20Bounding%20Boxes.pdf">link</a> provides significant insight into the SAT. 
 
-The output figure with each blue “*” representing a position of the robot, and the blue edges showing the
-estimated trajectory. The uncertainties of the positions of both the robot and the landmarks are shown as 3-sigma
-error ellipses. In the output figure, the magenta and blue ellipses represent the predicted and updated uncertainties of the
-robot’s position (orientation not shown here) at each time respectively. Also, the red and green ellipses represent
-the initial and all the updated uncertainties of the landmarks, respectively.
+The video below depicts the collion checking scheme. The cube is moved around and the light turns red when the cube is in collision with the robot.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/z1sWPv5JMVs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-The EKF-SLAM algorithm estimates the trajectory of the robot and the positions of the landmarks from the control input and measurements. The <font color = "black"><b>Kalman gain</b></font>, computed from the predicted covariance, specifies the degree to which the measurement is incorporated into the new state estimate. If the Kalman Gain is low, the robot trusts that its predicted mean and covariance is reliable, and weights that more heavily while updating the predicted mean and covariance. If the Kalman Gain is high, the robot realises that its predicted uncertainty is higher and weights the latest measurements heavily so as to correct its estimate. Thus, the
-Kalman gain is a parameter that is used to update the predicted covariance to yield the actual and more accurate covariance of the system. This is why the blue ellipses representing the updated uncertainty of the robot’s position are smaller in area than
-the magenta ellipses that represent the predicted uncertainty of the robot’s position. The red ellipses that are enclosed by the robot’s trajectory represent the uncertainty in landmark positions at time t = 0. However, as the EKF-SLAM algorithm is executed,
-the robot is able to update the positions of landmark which are also a part of the state of the system, yielding the smaller green ellipses to model the reduced uncertainty. 
-
-
-
-
-
+My foothold of robot controls and manipulations was strengthened in doing this project, and I absolutely enjoyed watching my code manifest into a real-time collion checker that could have diverse real-world applications!

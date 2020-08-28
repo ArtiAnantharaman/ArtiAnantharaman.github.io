@@ -1,48 +1,22 @@
 ---
 layout: post
-title: '3D Dense Reconstruction using ICP and Point-based Fusion'
+title: 'Robotic Bin Picking'
 ---
 
-In this programming assignment, I implemented a basic <font color = "black"><b>3D dense mapping system</b></font> that
-reconstructs a 3D dense model of a static indoor environment with given RGB-D image sequences. The system
-follows the tracking and mapping framework proposed in [1], which is commonly used in many state-of-the-art
-visual tracking and mapping systems. In this framework, mapping relies on the pose estimation from tracking to
-update the global model, and tracking uses the refined global model from mapping as reference. The visual tracking
-part of the system, which is also known as localization or visual odometry (VO), was solved using point-to-plane
-iterative closest point (ICP) [2]. The mapping part was done using point-based fusion [1]. However, unlike in
-[1], we do not consider the estimation of dynamic objects in this homework since the input data are from a static
-environment. Also, for simplicity and efficiency, I implemented both ICP and point-based fusion
-with some modifications from the original algorithms.
+Automated bin picking is a complex problem that is only partially solved. Automated bin picking often involves a 3D model of the parts, the robot gripper, any obstacles in the scene, sensors being used to map the bin, image analysis software, path planning software, and robot control software. A generic path planning algorithm that can handle infinite variations in part sizes and orientations is near-impossible with current technology, and weeks or months of hand-picked feature engineering often leads to unreliable performance. Companies like Covariant AI are bringing in deep reinforcement learning into the industrial manipulation space and allowing robots to learn these complex tasks via apprenticeship (by watching a human do the same task). In this project, we work on a simplified version of the same bin picking task within a photo-realistic simulator.
 
-The 3D dense reconstructed indoor scene, obtained by modifying the standard ICP algorithm [2] is shown below:
-<img src="/assets/img/projects/proj-3/icp.png" alt="ICP">.
+In this team project, we followed two approaches to solving the task of automated bin picking. In the first approach, the <font color = "black"><b>Rapidly-exploring Random Tree (RRT) algorithm</b></font> was modified to sample points from the task space of the gripper rather than from the joint configurations of the Franka Panda. This allowed us to plan in the 3D XYZ space + 4D quaternion/rotation space of the gripper. We restricted the upper and lower task space limits such that the robot arm remains in the forward half of the workspace bounds and does not perform unnatural motions. However, this implementation caused the robot to align itself horizontally with the shape to be picked up and reach a joint limit, when commanded to go to a particular shape's location. 
 
-The <font color = "black"><b>point-to-plane ICP</b></font>[1] performs well and results in a good reconstruction. The registration of successive frames into a global model is good and yields a reasonably well-structured output. Objects like the paintings on the wall have a “wavey” shape
-to them, quite unlike paintings in the real-world. The outlines of objects like the painting frames, cushions, etc. are not as sharp as one would expect, though overall, the semantic information conveyed in the reconstructed scene in quite good. However,
-the trajectory shown in red has a big discontinuity towards the end and seems to break off towards the end position. The likely reason for the suboptimal performance could be the fact that this modified ICP only iterates on one downsampled level with few iterations.
+In order to ensure that the shapes are picked up with an upright gripper, we used the quaternion corresponding to the original pose of the Franka as the orientation throughout the forward and the reset tasks. Despite this constraint, the planner would quite often immobilize the robot if the shape was too close to the edge of the container, making it impossible to recover from such configurations.
 
-An improved reconstruction is obtained using <font color = "black"><b>point-based fusion</b></font>. Volumetric fusion methods have high computational overheads [3] owing to continuous transitions between different data representations. Using regular voxel grids imposes memory overheads because both empty space and surfaces are represented densely [3], limiting the size of the reconstruction volume. On the other hand, point-based fusion methods lower the memory overhead associated with volumetric approaches and can therefore be employed in large-scale reconstructions.
+In order to have the Franka try and grasp an object with a different plan if it failed the first time around, we added a timeout to the execution of the planned path,i.e., the waypoint would be skipped in case the time required for the environment to step to that waypoint exceeded a threshold of 0.5 seconds (set manually). This meant that waypoints that prevented the gripper from moving (possibly due to the presence of an obstacle like the container edge) would be skipped, and the Franka would jump ahead multiple waypoints in its planned path to get to a target pose. This particular workaround in our implementation boosted the robot's performance significantly.
 
-The 3D dense reconstructed indoor scene, obtained by incorporating point-based fusion [1] is shown below:
-<img src="/assets/img/projects/proj-3/pf.png" alt="pf">.
+<font color = "black"><b>Video of the Franka executing the task based on the RRT algorithm with timeout approach is below:</b></font>
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/81vFBJ9JvFI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-The point-based fusion seems to perform much better than ICP in reconstructing the scene. The paintings on the wall have frames that are rectangular and the opposite edges of the frames are parallel to each other, as one would expect. The contours of the red, blue, and green cushions are also sharp and clearly demarcated from the background. The trajectory shown in red is also continuous and
-well-formed across all the frames. So we can certainly say point-based fusion outperforms the plain ICP approach.
+For our second approach to this task, we decided to use images from the camera mounted on the robot's wrist. The <font color = "black"><b>depth map</b></font> of the entire container, taken from the height that the robot was spawned at, was of poor resolution. So we used a raster scan-like approach wherein the Franka scans the container as a grid of 25 x 25 waypoints and the wrist camera captures a snapshot of the scene below at each waypoint. The center pixels of each of the 625 obtained images are concatenated to form a relatively higher resolution 25 x 25 depth map which is later thresholded using a `maximum distance' metric to the container. The objects are at a lower depth from the wrist camera compared to the base of the container and hence will be thresholded to a different value from the background. A pixel from the thresholded region is randomly sampled and the robot moves to that location and tries to grasp the shape. We try to pick the shapes up, and if any shape has been moved around or seems difficult to grasp, we start over and rescan the container.
 
-Using the fusion model as the next reference frame results in better ICP registration than using current frame as the next reference frame. The reason is that in pure ICP approaches, we simply “merge” the incoming frame with the global model
-using the 'R' and 't' that ICP computes. We do not seek to make sense of and associate different instances of a given object across all frames to yield a cohesive reconstruction of the object within the scene. In contrast, point-based fusion has a sophisticated data association strategy that yields well-formed reconstructions. By projecting the global model onto the image plane and
-using a confidence count metric to pick correspondences, all the points that represent the same object are “fused” over time, preserving its geometric properties. The directions of the normals of close-enough points are compared to make sure that they are
-pointing in the same direction before fusing the corresponding points, which further improves the geometric properties of the reconstruction.
+<font color = "black"><b>Video of the Franka grasping shapes based on their 6 DoF pose obtained from depth images is below:</b></font>
 
-
-
-
-<font color = "black"><b>References:</b></font>
-
-[1] Keller, Maik, et al. “Real-time 3D reconstruction in dynamic scenes using point-based fusion.” International
-Conference on 3D vision (3DV), 2013. <a href="http://ieeexplore.ieee.org/document/6599048/">Link to paper</a>.
-
-[2] Newcombe, Richard A., et al. “KinectFusion:Real-time dense surface mapping and tracking.” 10th IEEE International Symposium on Mixed and Augmented Reality (ISMAR), 2011. <a href="http://ieeexplore.ieee.org/document/6162880/">Link to paper</a>.
-
-[3] Handa, Ankur, et al. “A benchmark for RGB-D visual odometry, 3D reconstruction and SLAM." IEEE International Conference on Robotics and Automation (ICRA), 2014. <a href="https://www.doc.ic.ac.uk/~ahanda/VaFRIC/iclnuim.html">Website</a>.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/K5x97BLqYto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

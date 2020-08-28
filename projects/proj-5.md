@@ -1,15 +1,15 @@
 ---
 layout: post
-title: 'Spatial Kinematics of a 7-DoF Robotic Arm'
+title: 'Path Planning on Constraint Manifolds'
 ---
 
-In this programming assignment, I calculated the forward and inverse kinematics of the 7-DoF robot arm using which I implemented a box-box collision checking scheme.
+In this programming assignment, I implemented the <font color = "black"><b>Rapidly-exploring Random Trees (RRT)</b></font> path planner for the Franka robot. I also implemented planning with constraints using Projection Sampling.
 
-The <font color = "black"><b>forward kinematics</b></font> of the Franka Panda robot were computed from the Denavit-Hartenberg parameters provided by the robot manufacturer. The <font color = "black"><b>inverse kinematics</b></font> of the arm were computed using the <font color = "black"><b>Jacobian Transpose Method</b></font>, for which this <a href="https://homes.cs.washington.edu/~todorov/courses/cseP590/06_JacobianMethods.pdf">link</a> proved to be very helpful.
+I coded the RRT algorithm to move the robot arm from initial position to target position with collision avoidance, the video for which is below <font color = "black"><b>(unconstrained planning)</b></font>:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/n3T3_oE5H1s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
 
-In order to implement a collion checker, the links of the robot arm were modelled as <font color = "black"><b>oriented bounding boxes (OBB)</b></font>. The <font color = "black"><b>Separating Axis Theorem (SAT)</b></font> was applied to determine if the arm was in collision with a user-controlled object in 3D space. SAT states that: “If two convex objects are not intersecting, there exists an axis for which the projection of the objects will not overlap.” This <a href="https://www.jkh.me/files/tutorials/Separating%20Axis%20Theorem%20for%20Oriented%20Bounding%20Boxes.pdf">link</a> provides significant insight into the SAT. 
 
-The video below depicts the collion checking scheme. The cube is moved around and the light turns red when the cube is in collision with the robot.
-<iframe width="560" height="315" src="https://www.youtube.com/embed/z1sWPv5JMVs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+It is noticeable in the video above that the end-effector of the robot undergoes significant rotations. This may not be desirable in real-world scenarios; for example, if the robot is grasping an object, we may wish the object to remain upright. Hence I improved the existing planner to include <font color = "black"><b>constrained planning</b></font> via constraint projections to keep the end-effector in the vertical orientation. I incorporated gradient descent to project a given joint configuration towards the constraint manifold until a certain threshold was reached. There was some non-trivial effort in tuning hyperparameters such as the constraint threshold and the gradient step size in order to optimize the planning process.
 
-My foothold of robot controls and manipulations was strengthened in doing this project, and I absolutely enjoyed watching my code manifest into a real-time collion checker that could have diverse real-world applications!
+A video of the Franka reaching the target position with its end-effector in the vertical configuration is below <font color = "black"><b>(constrained planning)</b></font>:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vSM379GZVJw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
