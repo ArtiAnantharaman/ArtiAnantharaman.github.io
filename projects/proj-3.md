@@ -11,12 +11,12 @@ In order to ensure that the shapes are picked up with an upright gripper, we use
 
 In order to have the Franka try and grasp an object with a different plan if it failed the first time around, we added a timeout to the execution of the planned path,i.e., the waypoint would be skipped in case the time required for the environment to step to that waypoint exceeded a threshold of 0.5 seconds (set manually). This meant that waypoints that prevented the gripper from moving (possibly due to the presence of an obstacle like the container edge) would be skipped, and the Franka would jump ahead multiple waypoints in its planned path to get to a target pose. This particular workaround in our implementation boosted the robot's performance significantly.
 
-<font color = "black"><b>Video of the Franka executing the task based on the RRT algorithm with timeout approach is below:</b></font>
+<P><font color = "black"><b>Video of the Franka executing the task based on the RRT algorithm with timeout approach is below:</b></font></P>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/81vFBJ9JvFI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 For our second approach to this task, we decided to use images from the camera mounted on the robot's wrist. The <font color = "black"><b>depth map</b></font> of the entire container, taken from the height that the robot was spawned at, was of poor resolution. So we used a raster scan-like approach wherein the Franka scans the container as a grid of 25 x 25 waypoints and the wrist camera captures a snapshot of the scene below at each waypoint. The center pixels of each of the 625 obtained images are concatenated to form a relatively higher resolution 25 x 25 depth map which is later thresholded using a `maximum distance' metric to the container. The objects are at a lower depth from the wrist camera compared to the base of the container and hence will be thresholded to a different value from the background. A pixel from the thresholded region is randomly sampled and the robot moves to that location and tries to grasp the shape. We try to pick the shapes up, and if any shape has been moved around or seems difficult to grasp, we start over and rescan the container.
 
-<font color = "black"><b>Video of the Franka grasping shapes based on their 6 DoF pose obtained from depth images is below:</b></font>
+<P><font color = "black"><b>Video of the Franka grasping shapes based on their 6 DoF pose obtained from depth images is below:</b></font></P>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/K5x97BLqYto" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

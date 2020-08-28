@@ -7,7 +7,7 @@ In this programming assignment, I implemented my own 2D EKF-SLAM solver in MATLA
 
 The landmarks are being observed by the robot with a laser sensor which gives bearing angle and range, using which the global coordinates of the landmark are computed. I formulated the <font color = "black"><b>measurement Jacobian</b></font> with respect to the landmark positions and with respect to the robot pose to linearize the set of non-linear equations about the current mean. 
 
-<img src="/assets/img/projects/proj-6/EKF.png" alt="ekf">
+<img src="/assets/img/projects/proj-7/EKF.png" alt="ekf">
 
 The output figure with each blue “*” representing a position of the robot, and the blue edges showing the
 estimated trajectory. The uncertainties of the positions of both the robot and the landmarks are shown as 3-sigma

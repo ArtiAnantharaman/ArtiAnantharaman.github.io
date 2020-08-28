@@ -14,8 +14,8 @@ iterative closest point (ICP) [2]. The mapping part was done using point-based f
 environment. Also, for simplicity and efficiency, I implemented both ICP and point-based fusion
 with some modifications from the original algorithms.
 
-The 3D dense reconstructed indoor scene, obtained by modifying the standard ICP algorithm [2] is shown below:
-<img src="/assets/img/projects/proj-3/icp.png" alt="ICP">.
+<P>The 3D dense reconstructed indoor scene, obtained by modifying the standard ICP algorithm [2] is shown below:</P>
+<img src="/assets/img/projects/proj-4/icp.png" alt="ICP">.
 
 The <font color = "black"><b>point-to-plane ICP</b></font>[1] performs well and results in a good reconstruction. The registration of successive frames into a global model is good and yields a reasonably well-structured output. Objects like the paintings on the wall have a “wavey” shape
 to them, quite unlike paintings in the real-world. The outlines of objects like the painting frames, cushions, etc. are not as sharp as one would expect, though overall, the semantic information conveyed in the reconstructed scene in quite good. However,
@@ -23,8 +23,8 @@ the trajectory shown in red has a big discontinuity towards the end and seems to
 
 An improved reconstruction is obtained using <font color = "black"><b>point-based fusion</b></font>. Volumetric fusion methods have high computational overheads [3] owing to continuous transitions between different data representations. Using regular voxel grids imposes memory overheads because both empty space and surfaces are represented densely [3], limiting the size of the reconstruction volume. On the other hand, point-based fusion methods lower the memory overhead associated with volumetric approaches and can therefore be employed in large-scale reconstructions.
 
-The 3D dense reconstructed indoor scene, obtained by incorporating point-based fusion [1] is shown below:
-<img src="/assets/img/projects/proj-3/pf.png" alt="pf">.
+<P>The 3D dense reconstructed indoor scene, obtained by incorporating point-based fusion [1] is shown below:</P>
+<img src="/assets/img/projects/proj-4/pf.png" alt="pf">.
 
 
 The point-based fusion seems to perform much better than ICP in reconstructing the scene. The paintings on the wall have frames that are rectangular and the opposite edges of the frames are parallel to each other, as one would expect. The contours of the red, blue, and green cushions are also sharp and clearly demarcated from the background. The trajectory shown in red is also continuous and
