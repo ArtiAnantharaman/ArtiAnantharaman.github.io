@@ -43,7 +43,7 @@ disqus:
 # About Section
 
 about: >
-  Hi! I am a Graduate student at the Robotics Institute in Carnegie Mellon University, pursuing my Master's in Robotic Systems Development. Currently, I am working with Prof. Howie Choset to develop a robotic surgical system to autonomously localize tumors of the liver, and display their positions in real-time using augmented reality. 
+  Hi! I am a Graduate student at the Robotics Institute in Carnegie Mellon University, pursuing my Master's in Robotic Systems Development. From September 2019 to December 2020, advised by Prof. Howie Choset, I developed a robotic surgical system that can localize embedded liver tumors. 
 
   My most recent work experience was at Johnson & Johnson, in the Robotics & Digital Surgery group where I defined functional requirements for a robot arm to perform manipulation tasks, and also automated the testing of critical robotic faults.
 
