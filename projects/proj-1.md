@@ -2,7 +2,7 @@
 layout: post
 title: 'Augmented Reality for Minimally Invasive Surgery'
 ---
-This is my <b>Capstone Project</b> as part of my Master's in Robotic Systems Development (MRSD) at Carnegie Mellon. My team and I are advised by Dr. Howie Choset at the Biorobotics Lab in CMU.
+This was my <b>Capstone Project</b> as part of my Master's in Robotic Systems Development (MRSD) at Carnegie Mellon. My team and I were advised by Dr. Howie Choset at the Biorobotics Lab in CMU.
 
 The <font color = "black"><b>Chopsticks Robotic Surgical System</b></font> is a product that can overcome the limitations of conventional tumor localization. In typical tumor resection procedures, a surgeon has to make a large incision to gain access to the diseased organ and will manually palpate the organ to locate embedded tumors. Regions of abnormally high stiffness in the organ indicate the presence of tumors. The patient will have to be hospitalized for longer and is at a higher risk of infection because of the large incision needed for the non-laparoscopic surgery. In addition to this method prolonging the hospitalization time of the patient, supplementary preoperative images such as CT scans make the procedure very expensive. It is also cognitively demanding for the surgeon who must form a correspondence between these tumor positions with the CT scans. CT scans are also expensive in the United States, with an average cost of $3,275.
 
@@ -17,7 +17,7 @@ The video below demonstrates the work done on hardware in <font color = "black">
 
 Due to the COVID-19 pandemic, we were unable to access the robot in the Biorobotics Lab and had to switch to simulation for the remainder of the project.
 
-The video below was recorded at the completion of the project, in <font color = "black"><b>Fall 2020</b></font>. It shows one arm of the dVRK performing the surgical procedure, start to end. 
+The video below was recorded at the completion of the project, in <font color = "black"><b>Fall 2020</b></font>. My teammate, Chang Shi, provided the voiceover in this video. It shows one arm of the dVRK performing the surgical procedure, start to end. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6q6407emmPA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
