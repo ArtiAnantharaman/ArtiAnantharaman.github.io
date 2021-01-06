@@ -69,7 +69,7 @@ projects:
 - {name: 'Augmented Reality for Minimally Invasive Surgery', folder: 'proj-1', file: 'projects/proj-1.html'}
 - {name: 'Planning for a High-DOF Planar Arm', folder: 'proj-2', file: 'projects/proj-2.html'}
 - {name: 'Robotic Bin Picking', folder: 'proj-3', file: 'projects/proj-3.html'}
-- {name: '3D Dense Reconstruction using ICP and Point-based Fusion', folder: 'proj-4', file: 'projects/proj-4.html'}
+- {name: 'Catch a Moving Target', folder: 'proj-4', file: 'projects/proj-4.html'}
 - {name: 'Path Planning on Constraint Manifolds', folder: 'proj-5', file: 'projects/proj-5.html'}
 - {name: 'Spatial Kinematics of a 7-DoF Robotic Arm', folder: 'proj-6', file: 'projects/proj-6.html'}
 - {name: 'Extended Kalman Filter for 2D SLAM', folder: 'proj-7', file: 'projects/proj-7.html'}
